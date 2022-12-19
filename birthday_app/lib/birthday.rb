@@ -3,12 +3,8 @@ require 'date'
 class Birthday
   attr_accessor :name, :birthday_date
 
-  def initialize
-    @current_date = Date.today
-  end
-
   def birthday_countdown
-    (Date.parse(birthday_date) - @current_date).to_i
+    (Date.parse(birthday_date) - current_date).to_i
   end 
 
   def message_generator
@@ -18,4 +14,8 @@ class Birthday
       "Your birthday will be in #{birthday_countdown} days, #{name}"
     end 
   end 
+
+  def current_date
+    Date.today
+  end
 end
