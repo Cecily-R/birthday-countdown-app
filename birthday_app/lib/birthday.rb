@@ -1,22 +1,21 @@
 require 'date'
 
 class Birthday
-  attr_accessor :name, :birthday
+  attr_accessor :name, :birthday_date
 
   def initialize
     @current_date = Date.today
   end
 
   def birthday_countdown
-    (@current_date...birthday).count
+    (Date.parse(birthday_date) - @current_date).to_i
   end 
 
   def message_generator
     if birthday_countdown == 0
       "Happy Birthday #{name}!"
     else 
-      "Your birthday will be in #{birthday_countdown}, #{name}"
-
-
+      "Your birthday will be in #{birthday_countdown} days, #{name}"
+    end 
   end 
 end
