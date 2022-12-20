@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative './lib/birthday'
@@ -9,9 +11,9 @@ class Application < Sinatra::Base
 
   enable :sessions
 
-  get '/' do 
+  get '/' do
     return erb(:index)
-  end 
+  end
 
   post '/' do
     session[:birthday] = Birthday.new
@@ -19,15 +21,12 @@ class Application < Sinatra::Base
     session[:birthday].birthday_date = params[:birthday_date]
 
     redirect('/message')
-  end 
+  end
 
   get '/message' do
     @birthday = session[:birthday]
-    if @birthday.birthday_today?
-      return erb(:birthday_message)
-    else 
-      return erb(:birthday_countdown)
-    end 
+    return erb(:birthday_message) if @birthday.birthday_today?
+
+    return erb(:birthday_countdown)
   end
 end
-

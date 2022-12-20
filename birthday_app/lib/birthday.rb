@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'date'
 
 class Birthday
@@ -5,13 +7,13 @@ class Birthday
 
   def birthday_countdown
     (Date.parse(birthday_date) - current_date).to_i
-  end 
-  
-  def birthday_today? 
-    birthday_countdown == 0
-  end 
+  end
 
-  private 
+  def birthday_today?
+    birthday_countdown.zero?
+  end
+
+  private
 
   def current_date
     Date.today
