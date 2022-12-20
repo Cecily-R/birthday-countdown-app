@@ -4,9 +4,10 @@
 
   <div>
   <label>What's your name?:</label>
-  <input type="text" name="message" />
+  <input type="text" name="name" />
   </div>
   <label>When is your birthday?</label>
 
-  <input type="date" min=<%= Date.today %>/>
+  <input type="date" min=<%= Date.today %> name="birthday_date" />
+  <input type="submit" />
 </form>
