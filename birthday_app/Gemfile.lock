@@ -36,6 +36,7 @@ GEM
       sinatra (= 3.0.5)
       tilt (~> 2.0)
     tilt (2.0.11)
+    timecop (0.9.6)
     webrick (1.7.0)
 
 PLATFORMS
@@ -46,6 +47,7 @@ DEPENDENCIES
   rspec (~> 3.12)
   sinatra (~> 3.0)
   sinatra-contrib (~> 3.0)
+  timecop
   webrick (~> 1.7)
 
 BUNDLED WITH

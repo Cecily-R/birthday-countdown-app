@@ -3,11 +3,20 @@
 require 'spec_helper'
 require 'rack/test'
 require_relative '../../app'
+require 'timecop'
 
 describe Application do
   include Rack::Test::Methods
 
   let(:app) { Application.new }
+
+  before do
+    Timecop.freeze(Time.local(2023, 02, 15))
+  end
+
+  after do
+    Timecop.return
+  end
 
   context 'GET /' do
     it 'asks user for name and birthday' do
@@ -15,8 +24,28 @@ describe Application do
 
       expect(response.status).to eq 200
 
-      expect(response.body).to include "<label>What's your name?:</label>"
-      expect(response.body).to include '<label>When is your birthday?</label>'
+      expect(response.body).to include "<label class=input_prompt>What's your name?</label>"
+      expect(response.body).to include '<label class=input_prompt>When is your birthday?</label>'
+    end
+
+    it 'returns an errorr message when given invalid name' do
+      response = post('/',
+                      name: '',
+                      birthday_date: '2023-12-02')
+      
+      expect(response.status).to eq 302
+
+      expect(response.body).to include '<div className=error> <%= @error %> </div>'
+    end
+
+    it 'returns an errorr message when given invalid name' do
+      response = post('/',
+                      name: 'Molly',
+                      birthday_date: '')
+      
+      expect(response.status).to eq 302
+
+      expect(response.body).to include '<div className=error> <%= @error %> </div>'
     end
   end
 
@@ -32,7 +61,7 @@ describe Application do
     it 'gives user a happy birthday message' do
       response = post('/',
                       name: 'Jasmin',
-                      birthday_date: '2022-12-20')
+                      birthday_date: '2023-02-15')
 
       expect(response.status).to eq 302
 
@@ -44,7 +73,7 @@ describe Application do
     it 'gives user countdown until birthday' do
       response = post('/',
                       name: 'Hannah',
-                      birthday_date: '2022-12-25')
+                      birthday_date: '2023-02-20')
 
       expect(response.status).to eq 302
 
