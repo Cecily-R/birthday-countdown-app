@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../web-applications/chitter-challenge"
+		},
+		{
+			"path": "../../../../databases/music_library"
+		}
+	],
+	"settings": {}
+}

@@ -1,0 +1,50 @@
+body {
+  background-color: #c2e5d3;
+  color: #ff476f;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Rubik Gemstones', cursive;
+}
+
+form {
+ text-align: center;
+ font-family: 'Raleway', sans-serif;
+ margin: auto;
+ display: block;
+ width: 30%;
+}
+
+div#box {
+  background-color:#fff;
+  border-radius: 10px;
+  padding: 8%;
+  font-weight: 100px;
+}
+
+label.input_prompt{
+  text-align: center;
+  display: block;
+  margin-bottom: 6%;
+}
+
+input.input_box {
+  background-color: #ffff;
+}
+
+#box .input {
+  color: #ff476f; 
+  font-family: 'Raleway', sans-serif;
+  margin: 10px;
+  padding: 100;
+  width: 75%;
+  border-color: #ffff;
+  background-color: #c2e5d3;
+  box-shadow: 10px; 
+}
+
+input#submit {
+  background-color: white;
+  width: 75%
+} 

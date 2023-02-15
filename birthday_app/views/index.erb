@@ -1,13 +1,13 @@
 <h1> Hello there!</h1>
 
 <form method="POST" action="/">
+  <div id=box>
+    <label class=input_prompt>What's your name?:</label>
+    <input class=input_box type="text" name="name" />
 
-  <div>
-  <label>What's your name?:</label>
-  <input type="text" name="name" />
+    <label class=input_prompt>When is your birthday?</label>
+    <input class=input_box type="date" min=<%= Date.today %> name="birthday_date" />
+
+    <input id=submit_button type="submit" />
   </div>
-  <label>When is your birthday?</label>
-
-  <input type="date" min=<%= Date.today %> name="birthday_date" />
-  <input type="submit" />
 </form>
