@@ -4,6 +4,7 @@ require 'sinatra/reloader'
 require_relative './lib/birthday'
 
 class Application < Sinatra::Base
+  
   configure :development do
     register Sinatra::Reloader
   end
@@ -11,15 +12,24 @@ class Application < Sinatra::Base
   enable :sessions
 
   get '/' do
+    @error = session[:error]
     return erb(:index)
   end
 
   post '/' do
+    session[:error] = nil
     session[:birthday] = Birthday.new
     session[:birthday].name = params[:name]
     session[:birthday].birthday_date = params[:birthday_date]
 
-    redirect('/message')
+    error = params[:name].empty? || params[:birthday_date].nil? ? 'Please enter a valid name and birth date' : nil
+
+    if error
+      session[:error] = error
+      redirect('/')
+    else
+      redirect('/message');
+    end
   end
 
   get '/message' do
